@@ -5,6 +5,7 @@ const express = require("express"),
 const server = express();
 
 const authRoute = require("../auth/auth-route.js");
+const auctionRoute = require("../auction/auction-route.js");
 
 //gobal middleware
 server.use(helment());
@@ -18,5 +19,6 @@ server.get("/", (req, res) => {
 
 //Routes
 server.use("/api/auth", authRoute);
+server.use("/api/auction", auctionRoute);
 
 module.exports = server;
