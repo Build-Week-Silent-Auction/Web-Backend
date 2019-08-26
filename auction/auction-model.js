@@ -5,5 +5,5 @@ module.exports = {
 };
 
 function get() {
-  return db("");
+  return db("auctions");
 }

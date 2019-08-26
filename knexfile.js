@@ -10,7 +10,7 @@ module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "./database/auction.db3"
+      filename: "./database/silent-auction.db3"
     },
     useNullAsDefault: true,
     migrations: {
@@ -29,7 +29,6 @@ module.exports = {
   production: {
     client: "pg",
     connection: productionDBConnection,
-
     migrations: {
       directory: "./database/migrations"
     },
