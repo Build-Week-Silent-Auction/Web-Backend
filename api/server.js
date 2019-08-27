@@ -23,6 +23,6 @@ server.get("/", (req, res) => {
 server.use("/auth", authRoute);
 server.use("/", auctionRoute);
 server.use("/", productRoute);
-server.use("/", bidRoute);
+server.use("/bidder", bidRoute);
 
 module.exports = server;

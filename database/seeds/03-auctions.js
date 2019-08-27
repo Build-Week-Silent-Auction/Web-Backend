@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 150,
-      bid: "0",
+
       product_id: 1
     },
     {
@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 650,
-      bid: "0",
+
       product_id: 2
     },
     {
@@ -24,7 +24,7 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 100,
-      bid: "0",
+
       product_id: 3
     },
     {
@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 650,
-      bid: "0",
+
       product_id: 5
     }
   ]);
