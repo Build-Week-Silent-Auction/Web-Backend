@@ -36,6 +36,7 @@ router.get("/bidder/auctions/:auctionid", (req, res) => {
 
 router.get("/seller/:userid/auctions", (req, res) => {
   const { userid } = req.params;
+  console.log(userid);
   Auctions.find(userid)
     .then(auctions => {
       res.status(200).json(auctions);
@@ -47,7 +48,7 @@ router.get("/seller/:userid/auctions", (req, res) => {
     });
 });
 
-//GET seller's auctions
+//GET  single seller's auctions
 router.get("/seller/:userid/auctions/:auctionid", (req, res) => {
   const { auctionid } = req.params;
 
@@ -66,6 +67,7 @@ router.get("/seller/:userid/auctions/:auctionid", (req, res) => {
 
 router.post("/seller/:userid/auctions", (req, res) => {
   const auction = req.body;
+  console.log(auction);
   Auctions.add(auction)
     .then(auction => {
       res.status(201).json({ message: "New auction created" });

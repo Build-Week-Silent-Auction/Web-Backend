@@ -5,7 +5,7 @@ const Products = require("./product-model.js");
 //Get Products for a user
 router.get("/seller/:userid/products", (req, res) => {
   const { userid } = req.params;
-
+  console.log(userid);
   Products.get(userid)
     .then(products => {
       res.status(200).json(products);

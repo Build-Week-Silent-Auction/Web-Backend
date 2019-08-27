@@ -42,7 +42,7 @@ function getBy(auctionid) {
 
 function find(userid) {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .innerJoin("users", "users.id", "products.user_id")
     .select(
       "auctions.id",

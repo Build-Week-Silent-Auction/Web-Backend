@@ -9,7 +9,14 @@ exports.up = function(knex) {
     auctions.integer("starting_bid").notNullable();
     auctions.integer("bid").notNullable();
     auctions
-      .integer("products_id")
+      .integer("bid_id")
+      .unsigned()
+      .references("id")
+      .inTable("bidding_process")
+      .onUpdate("CASCADE")
+      .onDelete("CASCADE");
+    auctions
+      .integer("product_id")
       .unsigned()
       .references("id")
       .inTable("products")

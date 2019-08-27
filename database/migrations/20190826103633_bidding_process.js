@@ -9,15 +9,6 @@ exports.up = function(knex) {
       .inTable("users")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-
-    bid
-      .integer("auction_id")
-      .unsigned()
-      .notNullable()
-      .references("id")
-      .inTable("auctions")
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
   });
 };
 
