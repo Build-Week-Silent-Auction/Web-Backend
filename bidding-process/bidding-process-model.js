@@ -2,6 +2,7 @@ const db = require("../database/db-config.js");
 
 module.exports = {
   find,
+  findMax,
   add
 };
 
@@ -20,12 +21,19 @@ function find(userid) {
     .where("bids.user_id", userid);
 }
 
+function findMax(auctionid) {
+  return db("bids")
+    .innerJoin("auctions", "auctions.id", "bids.auction_id")
+    .where("bids.auction_id", auctionid)
+    .max("bid");
+}
+
 function add(userid, auctionsid, bid) {
   const addedBid = {
     ...bid,
     user_id: userid,
     auction_id: auctionsid
   };
-  console.log(addedBid);
+
   return db("bids").insert(addedBid);
 }
