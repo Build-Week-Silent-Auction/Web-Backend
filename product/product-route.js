@@ -1,9 +1,10 @@
 const router = require("express").Router();
 
 const Products = require("./product-model.js");
+const restricted = require("../auth/restricted-middleware.js");
 
 //Get Products for a user
-router.get("/seller/:userid/products", (req, res) => {
+router.get("/seller/:userid/products", restricted, (req, res) => {
   const { userid } = req.params;
   console.log(userid);
   Products.get(userid)
@@ -17,7 +18,7 @@ router.get("/seller/:userid/products", (req, res) => {
 
 //GET single product
 
-router.get("/seller/:userid/products/:productid", (req, res) => {
+router.get("/seller/:userid/products/:productid", restricted, (req, res) => {
   const { productid } = req.params;
 
   Products.getBy(productid)
@@ -34,7 +35,7 @@ router.get("/seller/:userid/products/:productid", (req, res) => {
 
 //POST add products
 
-router.post("/seller/:userid/products", (req, res) => {
+router.post("/seller/:userid/products", restricted, (req, res) => {
   const product = req.body;
   const { userid } = req.params;
 
@@ -52,7 +53,7 @@ router.post("/seller/:userid/products", (req, res) => {
 
 //DELETE delete proudct
 
-router.delete("/seller/:userid/products/:productid", (req, res) => {
+router.delete("/seller/:userid/products/:productid", restricted, (req, res) => {
   const { productid } = req.params;
 
   Products.remove(productid)
@@ -66,7 +67,7 @@ router.delete("/seller/:userid/products/:productid", (req, res) => {
 
 //PUT update product
 
-router.put("/seller/:userid/products/:productid", (req, res) => {
+router.put("/seller/:userid/products/:productid", restricted, (req, res) => {
   const { productid } = req.params;
   const changes = req.body;
 
@@ -80,4 +81,5 @@ router.put("/seller/:userid/products/:productid", (req, res) => {
         .json({ message: "Error deleting product from database." });
     });
 });
+
 module.exports = router;

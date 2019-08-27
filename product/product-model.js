@@ -26,7 +26,7 @@ function add(userid, product) {
     ...product,
     user_id: userid
   };
-  console.log(productUser);
+
   return db("products").insert(productUser);
 }
 

@@ -11,7 +11,7 @@ module.exports = {
 
 function get() {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .select(
       "auctions.id",
       "auctions.auction_name",
@@ -26,7 +26,7 @@ function get() {
 
 function getBy(auctionid) {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .select(
       "auctions.id",
       "auctions.auction_name",
