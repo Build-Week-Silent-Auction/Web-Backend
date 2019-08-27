@@ -8,7 +8,7 @@ const Auctions = require("./auction-model.js");
 // });
 
 //GET all auctions  - Biddder View
-router.get("/", (req, res) => {
+router.get("/:userid/auctions", (req, res) => {
   Auctions.get()
     .then(auction => {
       res.status(200).json(auction);

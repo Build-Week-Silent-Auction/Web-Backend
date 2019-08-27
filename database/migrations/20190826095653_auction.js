@@ -4,8 +4,8 @@ exports.up = function(knex) {
 
     auctions.string("auction_name").notNullable();
     auctions.string("auction_description").notNullable();
-    auctions.datetime("start_time", { precision: 6 }).notNullable();
-    auctions.datetime("end_time", { precision: 6 }).notNullable();
+    auctions.datetime("start_time").notNullable();
+    auctions.datetime("end_time").notNullable();
     auctions.integer("starting_bid").notNullable();
     auctions.integer("bid").notNullable();
   });

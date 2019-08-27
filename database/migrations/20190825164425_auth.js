@@ -13,6 +13,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     users.string("password").notNullable();
+    users.string("user_classification");
   });
 };
 
