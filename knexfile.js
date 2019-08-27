@@ -10,7 +10,7 @@ module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "./database/silentAuction.db3"
+      filename: "./database/silent-auction.db3"
     },
     useNullAsDefault: true,
     migrations: {

@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("bidding_process", bid => {
+  return knex.schema.createTable("bids", bid => {
     bid.increments();
     bid
       .integer("user_id")
@@ -9,7 +9,6 @@ exports.up = function(knex) {
       .inTable("users")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-
     bid
       .integer("auction_id")
       .unsigned()
@@ -18,6 +17,7 @@ exports.up = function(knex) {
       .inTable("auctions")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
+    bid.integer("bid").notNullable();
   });
 };
 

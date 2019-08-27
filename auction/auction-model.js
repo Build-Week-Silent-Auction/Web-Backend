@@ -11,7 +11,7 @@ module.exports = {
 
 function get() {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .select(
       "auctions.id",
       "auctions.auction_name",
@@ -19,14 +19,13 @@ function get() {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     );
 }
 
 function getBy(auctionid) {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .select(
       "auctions.id",
       "auctions.auction_name",
@@ -34,15 +33,14 @@ function getBy(auctionid) {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     )
     .where("auctions.id", auctionid);
 }
 
 function find(userid) {
   return db("auctions")
-    .innerJoin("products", "products.id", "auctions.products_id")
+    .innerJoin("products", "products.id", "auctions.product_id")
     .innerJoin("users", "users.id", "products.user_id")
     .select(
       "auctions.id",
@@ -51,8 +49,7 @@ function find(userid) {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     )
     .where({ user_id: userid });
 }

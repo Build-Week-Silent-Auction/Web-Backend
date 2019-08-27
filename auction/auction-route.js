@@ -1,10 +1,11 @@
 const router = require("express").Router();
 
 const Auctions = require("./auction-model.js");
+const restricted = require("../auth/restricted-middleware.js");
 
 //Biddder View
 //GET all auctions
-router.get("/bidder/auctions", (req, res) => {
+router.get("/bidder/auctions", restricted, (req, res) => {
   Auctions.get()
     .then(auction => {
       res.status(200).json(auction);
@@ -17,10 +18,11 @@ router.get("/bidder/auctions", (req, res) => {
 });
 
 //GET single auction
-router.get("/bidder/auctions/:auctionid", (req, res) => {
+router.get("/bidder/auctions/:auctionid", restricted, (req, res) => {
   const { auctionid } = req.params;
   console.log(auctionid);
   Auctions.getBy(auctionid)
+    .first()
     .then(auction => {
       res.status(200).json(auction);
     })
@@ -34,8 +36,9 @@ router.get("/bidder/auctions/:auctionid", (req, res) => {
 //Sellers View
 //GET seller's auctions
 
-router.get("/seller/:userid/auctions", (req, res) => {
+router.get("/seller/:userid/auctions", restricted, (req, res) => {
   const { userid } = req.params;
+  console.log(userid);
   Auctions.find(userid)
     .then(auctions => {
       res.status(200).json(auctions);
@@ -47,11 +50,12 @@ router.get("/seller/:userid/auctions", (req, res) => {
     });
 });
 
-//GET seller's auctions
-router.get("/seller/:userid/auctions/:auctionid", (req, res) => {
+//GET  single seller's auctions
+router.get("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
   const { auctionid } = req.params;
 
   Auctions.getBy(auctionid)
+    .first()
     .then(auction => {
       res.status(200).json(auction);
     })
@@ -64,8 +68,9 @@ router.get("/seller/:userid/auctions/:auctionid", (req, res) => {
 
 //POST create an auction
 
-router.post("/seller/:userid/auctions", (req, res) => {
+router.post("/seller/:userid/auctions", restricted, (req, res) => {
   const auction = req.body;
+
   Auctions.add(auction)
     .then(auction => {
       res.status(201).json({ message: "New auction created" });
@@ -75,9 +80,9 @@ router.post("/seller/:userid/auctions", (req, res) => {
     });
 });
 
-//POST Delete an auction
+//DELETE Delete an auction
 
-router.delete("/seller/:userid/auctions/:auctionid", (req, res) => {
+router.delete("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
   const { auctionid } = req.params;
 
   Auctions.remove(auctionid)
@@ -93,7 +98,7 @@ router.delete("/seller/:userid/auctions/:auctionid", (req, res) => {
 
 //PUT update an auction
 
-router.put("/seller/:userid/auctions/:auctionid", (req, res) => {
+router.put("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
   const { auctionid } = req.params;
   const changes = req.body;
   console.log(changes);

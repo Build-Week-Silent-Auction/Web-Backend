@@ -26,6 +26,7 @@ function add(userid, product) {
     ...product,
     user_id: userid
   };
+
   return db("products").insert(productUser);
 }
 
