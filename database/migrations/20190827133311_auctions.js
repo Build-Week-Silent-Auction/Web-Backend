@@ -11,6 +11,7 @@ exports.up = function(knex) {
     auctions
       .integer("product_id")
       .unsigned()
+      .notNullable()
       .references("id")
       .inTable("products")
       .onUpdate("CASCADE")
