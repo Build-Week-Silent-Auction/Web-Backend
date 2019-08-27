@@ -19,8 +19,7 @@ function get() {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     );
 }
 
@@ -34,8 +33,7 @@ function getBy(auctionid) {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     )
     .where("auctions.id", auctionid);
 }
@@ -51,8 +49,7 @@ function find(userid) {
       "products.product_name",
       "auctions.start_time",
       "auctions.end_time",
-      "auctions.starting_bid",
-      "auctions.bid"
+      "auctions.starting_bid"
     )
     .where({ user_id: userid });
 }
