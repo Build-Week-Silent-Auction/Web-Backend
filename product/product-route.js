@@ -15,9 +15,26 @@ router.get("/seller/:userid/products", (req, res) => {
     });
 });
 
-//Add products
+//GET single product
 
-router.post("/products", (req, res) => {
+router.get("/seller/:userid/products/:productid", (req, res) => {
+  const { productid } = req.params;
+
+  Products.getBy(productid)
+    .first()
+    .then(product => {
+      res.status(200).json(product);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "Error fetching product from database." });
+    });
+});
+
+//POST add products
+
+router.post("/seller/:userid/products", (req, res) => {
   const product = req.body;
   const { userid } = req.params;
 
@@ -33,4 +50,34 @@ router.post("/products", (req, res) => {
     });
 });
 
+//DELETE delete proudct
+
+router.delete("/seller/:userid/products/:productid", (req, res) => {
+  const { productid } = req.params;
+
+  Products.remove(productid)
+    .then(deleted => {
+      res.status(200).json({ message: "Product deleted" });
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error delting product from database." });
+    });
+});
+
+//PUT update product
+
+router.put("/seller/:userid/products/:productid", (req, res) => {
+  const { productid } = req.params;
+  const changes = req.body;
+
+  Products.update(productid, changes)
+    .then(udpated => {
+      res.status(200).json({ message: "Product has been updated. " });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: "Error deleting product from database." });
+    });
+});
 module.exports = router;
