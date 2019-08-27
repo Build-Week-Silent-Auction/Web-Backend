@@ -10,13 +10,6 @@ exports.up = function(knex) {
       .inTable("users")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-    products
-      .integer("auction_id")
-      .unsigned()
-      .references("id")
-      .inTable("auctions")
-      .onUpdate("CASCADE")
-      .onDelete("CASCADE");
   });
 };
 

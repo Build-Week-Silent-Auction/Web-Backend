@@ -3,7 +3,7 @@ const router = require("express").Router();
 const Products = require("./product-model.js");
 
 //Get Products for a user
-router.get("/:userid/products", (req, res) => {
+router.get("/seller/:userid/products", (req, res) => {
   const { userid } = req.params;
 
   Products.get(userid)
@@ -17,7 +17,7 @@ router.get("/:userid/products", (req, res) => {
 
 //Add products
 
-router.post("/:userid/products", (req, res) => {
+router.post("/products", (req, res) => {
   const product = req.body;
   const { userid } = req.params;
 

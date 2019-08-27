@@ -19,8 +19,8 @@ server.get("/", (req, res) => {
 });
 
 //Routes
-server.use("/api/auth", authRoute);
-server.use("/api", auctionRoute);
-server.use("/api", productRoute);
+server.use("/auth", authRoute);
+server.use("/", auctionRoute);
+server.use("/", productRoute);
 
 module.exports = server;
