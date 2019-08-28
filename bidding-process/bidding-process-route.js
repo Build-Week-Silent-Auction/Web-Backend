@@ -21,10 +21,12 @@ router.post("/:userid/bids/:auctionid", (req, res) => {
   const bid = req.body;
 
   Bids.findMax(auctionid)
+    .first()
     .then(checkBid => {
-      console.log(checkBid);
-      if (checkBid > bid) {
-        res.status(400).json({ message: "Please enter a higher bid" });
+      if (checkBid.bid >= bid.bid) {
+        res.status(400).json({
+          message: `Current bid at $${checkBid.bid} please place a higer bid`
+        });
       } else {
         Bids.add(userid, auctionid, bid)
           .then(added => {
