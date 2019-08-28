@@ -1,9 +1,10 @@
 const router = require("express").Router();
 
+const restricted = require("../auth/restricted-middleware.js");
 const Bids = require("./bidding-process-model.js");
 
 //GET user bids
-router.get("/:userid/bids", (req, res) => {
+router.get("/:userid/bids", restricted, (req, res) => {
   const { userid } = req.params;
 
   Bids.find(userid)
@@ -15,8 +16,8 @@ router.get("/:userid/bids", (req, res) => {
     });
 });
 
-//Get Top 10 bids for an auctions
-router.get("/auctions/:auctionid/bids", (req, res) => {
+//Get Top 3 bids for an auctions
+router.get("/auctions/:auctionid/bids", restricted, (req, res) => {
   const { auctionid } = req.params;
 
   Bids.getBids(auctionid)
@@ -28,7 +29,8 @@ router.get("/auctions/:auctionid/bids", (req, res) => {
     });
 });
 
-router.get("/auctions/:auctionid/bids/all", (req, res) => {
+//GEt All bids for an auctions
+router.get("/auctions/:auctionid/bids/all", restricted, (req, res) => {
   const { auctionid } = req.params;
 
   Bids.getAllBids(auctionid)
@@ -41,16 +43,16 @@ router.get("/auctions/:auctionid/bids/all", (req, res) => {
 });
 
 //Place new bid
-router.post("/:userid/bids/:auctionid", (req, res) => {
+router.post("/:userid/bids/:auctionid", restricted, (req, res) => {
   const { userid, auctionid } = req.params;
   const bid = req.body;
 
   Bids.findMax(auctionid)
     .first()
     .then(checkBid => {
-      if (checkBid.bid >= bid.bid) {
+      if (checkBid.starting_bid - 1 > bid.bid || checkBid.bid >= bid.bid) {
         res.status(400).json({
-          message: `Current bid at $${checkBid.bid} please place a higer bid`
+          message: "Please place a higer bid than the current bid"
         });
       } else {
         Bids.add(userid, auctionid, bid)
