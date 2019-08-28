@@ -3,7 +3,9 @@ const db = require("../database/db-config.js");
 module.exports = {
   find,
   findMax,
-  add
+  add,
+  getBids,
+  getAllBids
 };
 
 function find(userid) {
@@ -36,6 +38,24 @@ function add(userid, auctionsid, bid) {
     user_id: userid,
     auction_id: auctionsid
   };
-
   return db("bids").insert(addedBid);
+}
+
+function getBids(auctionid) {
+  console.log(auctionid);
+  return db("bids")
+    .innerJoin("auctions", "auctions.id", "bids.auction_id")
+    .innerJoin("users", "users.id", "bids.auction_id")
+    .orderBy("bids.bid", "desc")
+    .limit(3)
+    .select("bids.id", "bids.bid", "users.username")
+    .where("bids.auction_id", auctionid);
+}
+function getAllBids(auctionid) {
+  return db("bids")
+    .innerJoin("auctions", "auctions.id", "bids.auction_id")
+    .innerJoin("users", "users.id", "bids.auction_id")
+    .orderBy("bids.bid", "desc")
+    .select("bids.id", "bids.bid", "users.username")
+    .where("bids.auction_id", auctionid);
 }

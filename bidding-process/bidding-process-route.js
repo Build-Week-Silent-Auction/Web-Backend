@@ -15,6 +15,31 @@ router.get("/:userid/bids", (req, res) => {
     });
 });
 
+//Get Top 10 bids for an auctions
+router.get("/auctions/:auctionid/bids", (req, res) => {
+  const { auctionid } = req.params;
+
+  Bids.getBids(auctionid)
+    .then(bids => {
+      res.status(200).json(bids);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error fetching bids from database." });
+    });
+});
+
+router.get("/auctions/:auctionid/bids/all", (req, res) => {
+  const { auctionid } = req.params;
+
+  Bids.getAllBids(auctionid)
+    .then(bids => {
+      res.status(200).json(bids);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Error fetching bids from database." });
+    });
+});
+
 //Place new bid
 router.post("/:userid/bids/:auctionid", (req, res) => {
   const { userid, auctionid } = req.params;
@@ -41,4 +66,5 @@ router.post("/:userid/bids/:auctionid", (req, res) => {
       res.status(500).json({ message: "Error accessing database." })
     ]);
 });
+
 module.exports = router;
