@@ -5,7 +5,7 @@ const restricted = require("../auth/restricted-middleware.js");
 
 //Biddder View
 //GET all auctions
-router.get("/bidder/auctions", restricted, (req, res) => {
+router.get("/bidder/auctions", (req, res) => {
   Auctions.get()
     .then(auction => {
       res.status(200).json(auction);
@@ -18,7 +18,7 @@ router.get("/bidder/auctions", restricted, (req, res) => {
 });
 
 //GET single auction
-router.get("/bidder/auctions/:auctionid", restricted, (req, res) => {
+router.get("/bidder/auctions/:auctionid", (req, res) => {
   const { auctionid } = req.params;
   console.log(auctionid);
   Auctions.getBy(auctionid)
@@ -36,7 +36,7 @@ router.get("/bidder/auctions/:auctionid", restricted, (req, res) => {
 //Sellers View
 //GET seller's auctions
 
-router.get("/seller/:userid/auctions", restricted, (req, res) => {
+router.get("/seller/:userid/auctions", (req, res) => {
   const { userid } = req.params;
   console.log(userid);
   Auctions.find(userid)
