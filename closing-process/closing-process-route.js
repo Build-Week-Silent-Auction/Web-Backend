@@ -4,7 +4,7 @@ const restricted = require("../auth/restricted-middleware.js");
 const Close = require("./closing-process-model.js");
 
 //GET Close an auction - contact bidder
-router.get("/seller/:userid/contact", restricted, (req, res) => {
+router.get("/bidder/:userid/contact", restricted, (req, res) => {
   const { userid } = req.params;
 
   Close.getBidder(userid)
@@ -18,7 +18,7 @@ router.get("/seller/:userid/contact", restricted, (req, res) => {
 
 //GET Close an auction - contact seller
 
-router.get("/bidder/:userid/contact", restricted, (req, res) => {
+router.get("/seller/:userid/contact", restricted, (req, res) => {
   const { userid } = req.params;
 
   Close.getBidder(userid)

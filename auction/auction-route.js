@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const Auctions = require("./auction-model.js");
+const Users = require("../auth/auth-model.js");
 const restricted = require("../auth/restricted-middleware.js");
 
 //Biddder View
@@ -36,9 +37,9 @@ router.get("/bidder/auctions/:auctionid", restricted, (req, res) => {
 //Sellers View
 //GET seller's auctions
 
-router.get("/seller/:userid/auctions", restricted, (req, res) => {
+router.get("/seller/:userid/auctions", (req, res) => {
   const { userid } = req.params;
-  console.log(userid);
+
   Auctions.find(userid)
     .then(auctions => {
       res.status(200).json(auctions);
@@ -70,7 +71,15 @@ router.get("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
 
 router.post("/seller/:userid/auctions", restricted, (req, res) => {
   const auction = req.body;
-
+  if (
+    !auction.auction_name ||
+    !auction.auction_description ||
+    !auction.start_time ||
+    !auction.end_time ||
+    !auction.starting_bid
+  ) {
+    return res.status(400).json({ message: "Missing auction data." });
+  }
   Auctions.add(auction)
     .then(auction => {
       res.status(201).json({ message: "New auction created" });
@@ -101,7 +110,15 @@ router.delete("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
 router.put("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
   const { auctionid } = req.params;
   const changes = req.body;
-  console.log(changes);
+  if (
+    !changes.auction_name ||
+    !changes.auction_description ||
+    !changes.start_time ||
+    !changes.end_time ||
+    !changes.starting_bid
+  ) {
+    return res.status(400).json({ message: "Missing auction data." });
+  }
   Auctions.update(auctionid, changes)
     .then(auction => {
       res.status(200).json({ message: "Auction has been updated." });
@@ -112,4 +129,5 @@ router.put("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
         .json({ message: "Error fetching auctions from database." });
     });
 });
+
 module.exports = router;

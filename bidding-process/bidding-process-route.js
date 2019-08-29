@@ -46,7 +46,9 @@ router.get("/auctions/:auctionid/bids/all", restricted, (req, res) => {
 router.post("/:userid/bids/:auctionid", restricted, (req, res) => {
   const { userid, auctionid } = req.params;
   const bid = req.body;
-
+  if (!bid.bid) {
+    return res.status(400).json({ message: "Missing bid data. " });
+  }
   Bids.findMax(auctionid)
     .first()
     .then(checkBid => {
