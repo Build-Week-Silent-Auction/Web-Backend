@@ -6,7 +6,8 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 500,
-      product_id: 1
+      product_id: 1,
+      isActive: false
     },
     {
       auction_name: "Airpods for Auctions",
@@ -14,7 +15,8 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 80,
-      product_id: 3
+      product_id: 3,
+      isActive: true
     },
     {
       auction_name: "Sol Headphones",
@@ -22,7 +24,8 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 10,
-      product_id: 5
+      product_id: 5,
+      isActive: true
     },
     {
       auction_name: "WhiteClaws for auctinos",
@@ -30,7 +33,8 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 20,
-      product_id: 6
+      product_id: 6,
+      isActive: true
     },
     {
       auction_name: "Brand new Microphone for sale",
@@ -38,7 +42,8 @@ exports.seed = function(knex, Promise) {
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 100,
-      product_id: 11
+      product_id: 11,
+      isActive: true
     }
   ]);
 };
