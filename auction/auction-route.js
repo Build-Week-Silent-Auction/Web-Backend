@@ -5,7 +5,7 @@ const restricted = require("../auth/restricted-middleware.js");
 
 //Biddder View
 //GET all auctions
-router.get("/bidder/auctions", (req, res) => {
+router.get("/bidder/auctions", restricted, (req, res) => {
   Auctions.get()
     .then(auction => {
       res.status(200).json(auction);

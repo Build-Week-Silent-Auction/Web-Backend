@@ -16,6 +16,7 @@ exports.up = function(knex) {
       .inTable("products")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
+    auctions.boolean("isActive").defaultTo("true");
   });
 };
 

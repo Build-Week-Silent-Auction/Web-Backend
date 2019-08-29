@@ -1,40 +1,49 @@
 exports.seed = function(knex, Promise) {
   return knex("auctions").insert([
     {
-      auction_name: "Shoes Test",
-      auction_description: "Yeezy",
+      auction_name: "Macbook for Auction",
+      auction_description: "I'm seeling my old macbook from college.",
       start_time: "2019-8-12",
       end_time: "2019-8-13",
-      starting_bid: 150,
-
-      product_id: 1
+      starting_bid: 500,
+      product_id: 1,
+      isActive: false
     },
     {
-      auction_name: "Macbook",
-      auction_description: "2011",
+      auction_name: "Airpods for Auctions",
+      auction_description: "I upgrade to new onees.",
       start_time: "2019-8-12",
       end_time: "2019-8-13",
-      starting_bid: 650,
-
-      product_id: 2
+      starting_bid: 80,
+      product_id: 3,
+      isActive: true
     },
     {
-      auction_name: "Rolex",
-      auction_description: "2011",
+      auction_name: "Sol Headphones",
+      auction_description: "I'm a badass DJ now so I better headphones.",
+      start_time: "2019-8-12",
+      end_time: "2019-8-13",
+      starting_bid: 10,
+      product_id: 5,
+      isActive: true
+    },
+    {
+      auction_name: "WhiteClaws for auctinos",
+      auction_description: "I'm broke and need gas money, help a brother out.",
+      start_time: "2019-8-12",
+      end_time: "2019-8-13",
+      starting_bid: 20,
+      product_id: 6,
+      isActive: true
+    },
+    {
+      auction_name: "Brand new Microphone for sale",
+      auction_description: "I upgraded and no longer need this.",
       start_time: "2019-8-12",
       end_time: "2019-8-13",
       starting_bid: 100,
-
-      product_id: 3
-    },
-    {
-      auction_name: "TV",
-      auction_description: "2011",
-      start_time: "2019-8-12",
-      end_time: "2019-8-13",
-      starting_bid: 650,
-
-      product_id: 5
+      product_id: 11,
+      isActive: true
     }
   ]);
 };

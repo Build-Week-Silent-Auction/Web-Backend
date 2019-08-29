@@ -28,7 +28,7 @@ function findMax(auctionid) {
     .innerJoin("auctions", "auctions.id", "bids.auction_id")
     .where("bids.auction_id", auctionid)
     .orderBy("bid", "desc")
-    .select("bids.bid")
+    .select("auctions.starting_bid", "bids.bid")
     .limit(1);
 }
 
