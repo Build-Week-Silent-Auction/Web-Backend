@@ -130,4 +130,13 @@ router.put("/seller/:userid/auctions/:auctionid", restricted, (req, res) => {
     });
 });
 
+function checkId(req, res, next) {
+  const { userid } = req.params;
+
+  Users.getBy(userid).then(user => {
+    console.log(user);
+    next();
+  });
+}
+
 module.exports = router;
