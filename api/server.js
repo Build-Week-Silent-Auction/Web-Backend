@@ -15,11 +15,6 @@ server.use(helment());
 server.use(cors());
 server.use(express.json());
 
-//Test Route
-server.get("/", (req, res) => {
-  res.status(200).json({ message: "api connected" });
-});
-
 //Routes
 server.use("/auth", authRoute);
 server.use("/", auctionRoute);
