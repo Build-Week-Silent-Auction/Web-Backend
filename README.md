@@ -15,7 +15,7 @@
 
 | Method | Endpoint                              | Access Control                    | Description                                                                                                                       |
 | ------ | ------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/bidder/auctions`                    | parents                           | Returns all open auctions.                                                                                                        |
+| GET    | `/bidder/auctions`                    | All users.                           | Returns all open auctions.                                                                                                        |
 | GET    | `/bidder/auctions/:auctionid`         | All users                         | Returns single auctions.                                                                                                          |
 | GET    | `/seller/:userid/auctions`            | All users                         | Returns all auctions associated with a user.                                                                                      |
 | PUT    | `seller/:userid/auctions/:auctionid`  | Return a single seller's auction. |
@@ -27,7 +27,7 @@
 
 | Method | Endpoint                              | Access Control                          | Description                                                    |
 | ------ | ------------------------------------- | --------------------------------------- | -------------------------------------------------------------- |
-| GET    | `/seller/:userid/products`            | Returns all products for a single user. |
+| GET    | `/seller/:userid/products`            | All users. | Returns all products for a single user.
 | GET    | `/seller/:userid/products/:productid` | All users                               | Returns a single product for a user.                           |
 | DEL    | `/seller/:userid/products/:productid` | All users                               | Deletes product from a user.                                   |
 | UPDATE | `/seller/:userid/products/:productid` | All users                               | Takes JSON with "product_name" and edits a product for a user. |
