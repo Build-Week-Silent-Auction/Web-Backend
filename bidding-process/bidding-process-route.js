@@ -29,7 +29,7 @@ router.get("/auctions/:auctionid/bids", restricted, (req, res) => {
     });
 });
 
-//GEt All bids for an auctions
+//Get All bids for an auctions
 router.get("/auctions/:auctionid/bids/all", restricted, (req, res) => {
   const { auctionid } = req.params;
 

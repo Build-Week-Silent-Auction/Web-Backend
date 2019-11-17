@@ -27,9 +27,3 @@ function getBidder(userid) {
     )
     .where("bids.user_id", userid);
 }
-
-function getSeller(userid) {
-  return db("closing")
-    .innerJoin("auctions", "auctions.id", "closing.auction_id")
-    .innerJoin("");
-}
